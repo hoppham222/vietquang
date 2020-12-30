@@ -1,0 +1,45 @@
+{#
+/**
+ * @file
+ *
+ * Default product template.
+ *
+ * Available variables:
+ * - attributes: HTML attributes for the wrapper.
+ * - product: The rendered product fields.
+ *   Use 'product' to print them all, or print a subset such as
+ *   'product.title'. Use the following code to exclude the
+ *   printing of a given field:
+ *   @code
+ *   {{ product|without('title') }}
+ *   @endcode
+ * - product_entity: The product entity.
+ * - product_url: The product URL.
+ * - product.variation_field_images
+ * - product.variations - Add to cart form
+ *
+ * @ingroup themeable
+ */
+#}
+<div class="product product-teaser product-{{ product_entity.id }} product-type-{{ product_type }}">
+  <!-- Images -->
+  <div class="product-image-wrapper">
+    {% if product.variation_field_images %}
+    {{ product.variation_field_images[0] }}
+    {% else %}
+    <span class="image-empty">Chưa có ảnh sản phẩm</span>
+    {% endif %}
+    
+    <!-- Product btn -->
+    <div class="product-btn-wrapper">
+      <a class="product-btn product-btn--contact" href="tel:0935121010">Liên hệ</a>
+      <a class="product-btn product-btn--price-quote" href="#" pid="{{ product_entity.id }}" onclick="custom_commerce_product_add_to_cart(this); return false;">Báo giá</a>
+    </div>
+  </div>
+
+  <!-- Product info -->
+  <div class="product-info-wrapper">
+    <p class="product-item field-title"><a href="{{ product_url }}" title="Xem chi tiết SP: {{ product_entity.title.value }}">{{ product_entity.title.value }}</a></p>
+    <!--<p class="product-item field-price price value">{# product.variation_price #}</p>-->
+  </div>
+</div>

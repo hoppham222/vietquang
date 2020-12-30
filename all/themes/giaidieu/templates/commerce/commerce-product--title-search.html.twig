@@ -1,0 +1,39 @@
+{#
+/**
+ * @file
+ *
+ * Default product template.
+ *
+ * Available variables:
+ * - attributes: HTML attributes for the wrapper.
+ * - product: The rendered product fields.
+ *   Use 'product' to print them all, or print a subset such as
+ *   'product.title'. Use the following code to exclude the
+ *   printing of a given field:
+ *   @code
+ *   {{ product|without('title') }}
+ *   @endcode
+ * - product_entity: The product entity.
+ * - product_url: The product URL.
+ * - product.variation_field_images
+ * - product.variations - Add to cart form
+ *
+ * @ingroup themeable
+ */
+#}
+<div class="product product-title-search product-{{ product_entity.id }} product-type-{{ product_type }}">
+  <!-- Images -->
+  <div class="product-image-wrapper">
+    {% if product.variation_field_images %}
+    {{ product.variation_field_images[0] }}
+    {% else %}
+    <span class="image-empty">Chưa có ảnh</span>
+    {% endif %}
+  </div>
+
+  <!-- Product info -->
+  <div class="product-info-wrapper">
+    <p class="product-item field-category">{{ product_entity.field_danh_muc_san_pham.entity.name.value }}</p>
+    <p class="product-item field-title">{{ product_entity.title.value }}</p>
+  </div>
+</div>

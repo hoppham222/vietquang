@@ -1,0 +1,667 @@
+.management_user {
+    background-color: rgba(236,239,245,0.6);
+    padding-bottom: 80px;
+}
+
+.management_user ol.breadcrumb {
+    margin: 0px;
+    display: flex;
+    align-items: center;
+    border-radius: 0px;
+    height: 70px;
+}
+
+.management_user div#breadcrumbs {
+    background-color: transparent;
+    margin-bottom: 0px;
+}
+
+.management_user ol.breadcrumb li {
+    font-size: 16px;
+    line-height: 19px;
+    color: #0B0B0B;
+}
+
+ol.breadcrumb li a{
+	font-size: 16px;
+  line-height: 19px;
+  color: #0B0B0B;
+  font-weight: bold;
+}
+
+.management_user ol.breadcrumb li:last-child a {
+    color: #fd6220;
+}
+
+.user_details {
+    display: flex;
+    border-radius: 15px;
+    box-shadow: 0px 3px 6px rgba(0,0,0,0.16);
+    background-color: #ffffff;
+    flex-wrap: wrap;
+}
+
+.sidebar-user {
+    padding: 20px 10px;
+    border-right: 1px solid #CECECE;
+    padding-top: 5px;
+}
+
+.main-content-user {
+    padding: 35px 30px;
+    padding-top: 15px;
+}
+
+.menu-user-profile {
+    padding: 20px;
+}
+
+.user-profile {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    width: 100%;
+    padding: 15px 10px;
+    border-bottom: 1px solid #ccc;
+    margin: 0px 15px;
+}
+
+.user-profile .avt {
+    position: relative;
+}
+
+.user-profile .avt img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 1px solid #f4f5f9;
+}
+
+.user-profile .avt div#user-avatar-op {
+    font-size: 12px;
+    color: #fff;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    text-align: center;
+    background: rgba(0, 0, 0, .5);
+}
+
+.user-profile .avt div#user-avatar-op span {
+    display: block;
+    cursor: pointer;
+    padding: 5px 0px;
+}
+
+.user-profile .avt div#user-avatar-op span.user-avatar-save {
+    background: rgba(68, 157, 68, .8);
+}
+
+.user-profile .info {
+    margin-left: 10px;
+    flex: 1;
+}
+
+.menu-user-profile h3.menu-title {
+    color: #222222;
+    text-transform: uppercase;
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.user-profile .info {
+    color: #313131;
+    font-size: 20px;
+    line-height: 24px;
+    font-weight: 500;
+}
+
+.menu-user-profile ul.items-list {
+    padding-left: 15px;
+}
+
+.menu-user-profile ul.items-list li {
+    color: #A2A2A2;
+    transition: 0.3s;
+}
+
+.menu-user-profile ul.items-list li a {
+    color: inherit;
+    padding: 5px 0;
+    transition: all .5s;
+    display: inline-block;
+}
+
+.menu-user-profile ul.items-list li a.active {
+    color: #fd6220;
+}
+
+.menu-user-profile ul.items-list li.active {
+    color: #fd6220;
+}
+
+.menu-user-profile ul.items-list li.active:hover {
+    color: #1e265b;
+}
+
+.menu-user-profile ul.items-list li.active:hover a.active{
+	  color: #1e265b;
+}
+
+.menu-user-exit {
+    margin-left: 35px;
+}
+
+form#user-form {
+    display: grid;
+    grid-template-columns: calc(50% - 10px ) calc(50% - 10px );
+    grid-gap: 20px;
+}
+
+form#user-form div#edit-account {
+    grid-column-start: 2;
+    grid-column-end: 3;
+    grid-row-start: 1;
+    grid-row-end: 6;
+}
+
+form#user-form div#edit-field-full-name-wrapper {
+    grid-column-start: 1;
+    grid-column-end: 2;
+}
+
+form#user-form div#edit-field-full-name-wrapper div.counter {
+    font-size: 12px;
+    margin-top: 5px;
+    opacity: 0.8;
+}
+
+form#user-form div#edit-field-gender-wrapper {
+    grid-row-start: 2;
+    grid-row-end: 3;
+    position: relative;
+    margin-top: -10px;
+
+}
+
+form#user-form div#edit-field-birthday-wrapper {
+    grid-row-start: 3;
+    grid-row-end: 4;
+}
+
+form#user-form div#edit-field-mobile-number-wrapper {
+    grid-row-start: 4;
+    grid-row-end: 5;
+    transform: translateY(-24px);
+}
+
+form#user-form div#edit-field-address-wrapper {
+    grid-row-start: 5;
+    grid-row-end: 6;
+    transform: translateY(-37px);
+}
+
+
+form#user-form div#edit-actions {
+    grid-column-start: 1;
+    grid-column-end: 3;
+    grid-row-start: 6;
+    grid-row-end: 7;
+}
+
+form#user-form div#edit-actions button#edit-submit {
+    background-color: #fd6220;
+    border-color: #fd6220;
+    transition: 0.3s;
+}
+
+.menu-user-exit a.btn-danger {
+    background-color: #fd6220;
+    border-color: #fd6220;
+    margin: 0px;
+    font-size: 14px;
+    transition: 0.3s;
+}
+
+.menu-user-exit a.btn-danger:hover {
+    color: #fd6220;
+    background-color: transparent;
+}
+
+.user_details .main-content-user h1.page-header {
+    border: 0px;
+    margin-left: -30px;
+    padding: 10px 30px;
+    font-size: 18px;
+    color: #000;
+}
+
+.user_details .main-content-user h1.page-header:before {
+    content: "";
+    width: 1px;
+    height: 7px;
+    background-color: #fff;
+    position: absolute;
+    left: -1px;
+    top: 0px;
+}
+
+form#user-form label {
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+form#user-form legend {
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    border: 0px;
+}
+
+form#user-form div#edit-field-gender-wrapper div#edit-field-gender .form-item-field-gender:nth-child(1) {
+    display: none;
+}
+
+form#user-form > div {
+    margin-bottom: 0px;
+}
+
+form#user-form div#edit-field-gender-wrapper div#edit-field-gender {
+    display: flex;
+    margin-top: 7px;
+}
+
+form#user-form div#edit-field-gender-wrapper div#edit-field-gender .form-item-field-gender:nth-child(3) {
+    margin-left: 15px;
+}
+
+form#user-form div#edit-field-gender-wrapper div#edit-field-gender .form-item-field-gender input {
+    margin-top: 0px;
+}
+
+form#user-form div#edit-field-birthday-wrapper {
+    grid-row-start: 3;
+    grid-row-end: 4;
+    transform: translate(50%, -101px);
+    display: block;
+    height: 0px;
+}
+
+form#user-form div#edit-account div#edit-pass .password-confirm-message {
+    margin-top: 5px;
+    font-size: 12px;
+}
+
+form#user-form div#edit-actions button#edit-submit:hover {
+    background-color: #fff;
+    border-color: #fd6220;
+    color: #fd6220;
+}
+
+form#user-form div#edit-account .form-item-pass-pass2 {
+    margin-bottom: 5px;
+}
+
+form#user-form div#edit-actions button#edit-submit span {
+    display: none;
+}
+
+.menu-user-profile ul.items-list li a:hover {
+    color: #fd6220;
+}
+
+.management_user_details .user-full img.img-responsive {
+    width: 100%;
+    height: 200px;
+    border-radius: 10px;
+    object-fit: cover;
+}
+
+.management_user_details .user-full {
+    margin: auto;
+    padding: 10px;
+    margin-bottom: 30px;
+    box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.16);
+    border-radius: 10px;
+}
+
+.management_user_details .user-full .user-photo-wrapper {
+    padding-left: 0px;
+}
+
+.management_user_details .user-info-wrapper .user-full-name {
+    margin: 0px;
+    font-size: 24px;
+    font-weight: bold;
+    color: #1e265b;
+    text-transform: uppercase;
+}
+
+.management_user_details .user-info-wrapper .user-phone {
+    margin: 10px 0px;
+    font-size: 16px;
+}
+
+/*lịch sử báo giá*/
+
+.view-display-id-order_page thead th {
+    font-size: 16px;
+}
+
+.view-display-id-order_page table {
+    margin-bottom: 0px;
+}
+
+.view-display-id-order_page thead {
+    background-color: #1e265b;
+}
+
+.view-display-id-order_page thead th a {
+    color: #fff;
+    transition: 0.3s;
+}
+
+.view-display-id-order_page .table-responsive {
+    border-radius: 10px;
+    box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.16);
+}
+
+.view-display-id-order_page thead th a:hover{
+    color: #fd6220;
+}
+
+.view-display-id-order_page thead th span.glyphicon.icon-after {
+    margin-left: 10px;
+}
+
+.view-display-id-order_page tbody .views-field.views-field-nothing a.btn {
+    background-color: #1e265b;
+    border-color: #1e265b;
+    padding: 5px 20px;
+    transition: 0.3s;
+}
+
+.view-display-id-order_page tbody .views-field.views-field-nothing a.btn:hover {
+    color: #fd6220;
+    background-color: #fff;
+    border-color: #fd6220;
+}
+
+.view-display-id-order_page tbody .views-field-order-number a{
+  transition: 0.3s;
+}
+
+.view-display-id-order_page tbody .views-field-order-number a:hover {
+    color: #fd6220;
+}
+
+.page-name-entity-commerce_order-user_view .customer-information .field__label {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    margin-top: -30px;
+}
+
+.page-name-entity-commerce_order-user_view .customer-information .profile--type--customer> div {
+    margin-bottom: 15px;
+}
+
+.page-name-entity-commerce_order-user_view .customer-information p.address {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.page-name-entity-commerce_order-user_view .customer-information p.address .given-name {
+    padding-right: 10px;
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+.page-name-entity-commerce_order-user_view .customer-information p.address .address-line1 {
+    padding-right: 10px;
+}
+
+.page-name-entity-commerce_order-user_view .customer-information p.address .locality, .page-name-entity-commerce_order-user_view .customer-information p.address .administrative-area {
+    padding-right: 10px;
+    margin-bottom: 15px;
+}
+
+.page-name-entity-commerce_order-user_view .order-information .field--type-timestamp {
+    margin-bottom: 15px;
+}
+
+.page-name-entity-commerce_order-user_view .order-information .field--type-state {
+    margin-bottom: 15px;
+}
+
+.page-name-entity-commerce_order-user_view .order-information .field--type-entity-reference {
+    box-shadow: 0px 3px 8px rgba(0,0,0,0.16);
+    border-radius: 10px;
+}
+
+.page-name-entity-commerce_order-user_view .view-display-id-default .table-responsive {
+    border-radius: 10px;
+}
+
+.page-name-entity-commerce_order-user_view .view-display-id-default .table {
+    margin-bottom: 0px;
+}
+
+.page-name-entity-commerce_order-user_view .view-display-id-default tbody .views-field-title {
+    padding-top: 25px;
+}
+
+.page-name-entity-commerce_order-user_view .view-display-id-default tbody .views-field-title a {
+    color: #000;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.page-name-entity-commerce_order-user_view .view-display-id-default tbody .views-field-title a:hover {
+    color:#fd6220 ;
+}
+
+.page-name-entity-commerce_order-user_view .view-display-id-default tbody .views-field-quantity {
+    padding-top: 25px;
+}
+
+.page-name-entity-commerce_order-user_view .view-display-id-default thead tr {
+    background-color: #1e265b;
+}
+
+
+.page-name-entity-commerce_order-user_view .view-display-id-default thead th {
+    color: #fff;
+    font-size: 16px;
+}
+
+
+
+@media (max-width: 1199px) {
+	form#user-form div#edit-field-gender-wrapper {
+    margin-top: 13px;
+  }
+
+  form#user-form div#edit-field-mobile-number-wrapper {
+    transform: translateY(-15px);
+  }
+
+  form#user-form div#edit-field-address-wrapper {
+    transform: translateY(-33px);
+  }
+
+  #header + .management_user {
+    margin-top: 90px;
+  }
+
+}
+
+@media (max-width: 991px) {
+	.sidebar-user {
+    border-right: none;
+    width: 100%;
+    padding-bottom: 0px;
+    box-shadow: 0px 3px 3px -1px #dedede;
+    margin-bottom: 30px;
+    position: relative;
+  }
+
+  .sidebar-user:before {
+    content: "";
+    position: absolute;
+    bottom: -30px;
+    display: flex;
+    width: calc(100% + 10px);
+    height: 29px;
+    background-color: #f4f5f9;
+    left: -5px;
+  }
+
+  .sidebar-user:after {
+    content: "";
+    position: absolute;
+    bottom: -8px;
+    right: 50%;
+    transform: translateX(50%);
+    width: 0;
+    height: 0;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-top: 8px solid #fd6220;
+  }
+
+  .main-content-user {
+    border-top: 1px solid #d7d7d7;
+  }
+
+  #header + .management_user {
+    margin-top: 80px;
+  }
+
+  .page-name-entity-commerce_order-user_view .main-content.main-content-user {
+    width: 100%;
+  }
+
+  .page-name-view-commerce_user_orders-order_page .main-content.main-content-user {
+    width: 100%;
+  }
+
+
+}
+
+@media (max-width: 767px) {
+	form#user-form {
+    display: flex;
+    flex-wrap: wrap;
+    grid-gap: 15px;
+  }
+
+  form#user-form div#edit-account {
+    order: 6;
+  }
+
+  form#user-form div#edit-field-full-name-wrapper {
+    order: 1;
+    width: 50%;
+  }
+
+  form#user-form div#edit-field-gender-wrapper {
+    order: 2;
+    width: calc(50% - 20px);
+    margin-top: 0px
+  }
+
+  form#user-form div#edit-field-gender-wrapper div#edit-field-gender .form-item-field-gender {
+    margin-bottom: 0px;
+  }
+
+  form#user-form div#edit-field-gender-wrapper legend {
+    margin-bottom: 20px;
+  }
+
+  form#user-form div#edit-field-birthday-wrapper {
+    order: 4;
+    transform: none;
+    height: auto;
+    width: calc(50% - 20px);   
+  }
+
+  form#user-form div#edit-field-mobile-number-wrapper {
+    order: 3;
+    transform: none;
+    width: 50%;
+  }
+
+  form#user-form div#edit-field-address-wrapper {
+    order: 5;
+    transform: none;
+    width: 100%;
+  }
+
+  form#user-form div#edit-actions {
+    order: 7;
+    width: 100%;
+    text-align: center;
+  }
+
+  .page-name-entity-commerce_order-user_view .view-display-id-default tbody td.views-field.views-field-field-images {
+    width: 70px;
+    display: flex;
+  }
+
+
+}
+
+@media (max-width: 479px){
+
+  form#user-form div#edit-field-full-name-wrapper {
+    width: 100%;
+  }
+
+  form#user-form div#edit-field-gender-wrapper {
+    width: 100%;
+  }
+
+  form#user-form div#edit-field-birthday-wrapper {
+    width: 100%;
+  }
+
+  form#user-form div#edit-field-mobile-number-wrapper {
+    width: 100%;
+  }
+
+  form#user-form div#edit-field-birthday-wrapper .form-type-date {
+    width: 100%;
+  }
+
+  .user-profile .avt img {
+    width: 50px;
+    height: 50px;
+  }
+
+  .user-profile .info {
+    font-size: 16px;
+    font-weight: bold;
+  }
+
+  .user-profile {
+    flex-wrap: wrap;
+  }
+
+  .menu-user-exit {
+    margin-left: 0px;
+    margin-top: 15px;
+    width: 100%;
+  }
+
+  .menu-user-exit a.btn-danger {
+    padding: 5px 20px;
+  }
+}
+
+
+
+

@@ -1,0 +1,22 @@
+# Vietnamese translation of Email Registration (8.x-1.1)
+# Copyright (c) 2020 by the Vietnamese translation team
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Email Registration (8.x-1.1)\n"
+"POT-Creation-Date: 2020-06-16 14:49+0000\n"
+"PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
+"Language-Team: Vietnamese\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+msgid "user"
+msgstr "người dùng"
+msgid "Email address"
+msgstr "Địa chỉ thư điện tử"
+msgid "Email"
+msgstr "Thư điện tử"
+msgid "Conflict"
+msgstr "Xung đột"

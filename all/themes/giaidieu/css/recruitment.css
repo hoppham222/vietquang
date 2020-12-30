@@ -1,0 +1,276 @@
+/* global tuyen_dung */
+
+.view-recruitment {
+  color: #313131;
+}
+.view-recruitment .views-row {
+	padding-top: 25px;
+	padding-bottom: 30px;
+}
+.view-recruitment .views-row {
+  border-bottom: 1px solid #dedede;
+}
+.view-recruitment .views-field:not(:last-child) {
+  margin-bottom: 10px;
+}
+.view-recruitment .views-field-field-image img {
+  border-radius: 5px;
+}
+.view-recruitment .views-field-title a {
+  color: inherit;
+}
+.view-recruitment .views-field-title:hover {
+  color: #FD6220;
+}
+.view-recruitment .views-field-field-so-luong,
+.view-recruitment .views-field-field-luong-thang,
+.view-recruitment .views-field-field-ngay-het-han {
+  display: flex;
+  align-items: center;
+}
+.view-recruitment .views-field-field-luong-thang {
+  color: #0F7F30;
+}
+.view-recruitment .views-label-field-so-luong,
+.view-recruitment .views-label-field-luong-thang,
+.view-recruitment .views-label-field-ngay-het-han {
+  margin-right: 5px;
+}
+/* end global tuyen_dung */
+
+/* page_tuyen_dung */
+.view-display-id-page_tuyen_dung {
+  margin: 0 auto 60px;
+	width: 75%;
+}
+.view-display-id-page_tuyen_dung .views-row {
+  display: flex;
+  align-items: center;
+}
+.view-display-id-page_tuyen_dung .views-row .views-field-field-image,
+.view-display-id-page_tuyen_dung .views-row .views-field-nothing {
+  margin-bottom: 0;
+}
+.view-display-id-page_tuyen_dung .views-row .views-field-title {
+  font-size: 20px;
+}
+.view-display-id-page_tuyen_dung .views-row .views-field-nothing {
+  flex: 1;
+  padding: 0 30px;
+}
+.view-display-id-page_tuyen_dung .views-field-field-ngay-het-han {
+  font-size: 16px;
+}
+/* end page_tuyen_dung */
+
+/* page_tuyen_dung detail */
+.page-node-type-tuyen_dung {
+
+}
+.page-node-type-tuyen_dung .region-content {
+  
+}
+.page-node-type-tuyen_dung .page-header {
+  color: #1E265B;
+  font-size: 24px;
+  font-weight: 500;
+  border-bottom: unset;
+}
+.page-node-type-tuyen_dung .node-tuyen-dung-full {
+  margin-bottom: 60px;
+}
+.page-node-type-tuyen_dung .content-details {
+  color: #313131;
+  font-size: 16px;
+  line-height: 28px;
+}
+.page-node-type-tuyen_dung .content-details .field--label-inline {
+  margin-bottom: 10px;
+}
+.page-node-type-tuyen_dung .content-details .field--label-above .field--label {
+  margin-bottom: 5px;
+}
+.page-node-type-tuyen_dung .content-details .node-submitted {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+.page-node-type-tuyen_dung .content-details .node-submitted .field--name-field-ngay-het-han {
+  display: flex;
+  align-items: center;
+  margin-right: 10px;
+  margin-bottom: 0;
+}
+.page-node-type-tuyen_dung .content-details .node-submitted .social-share-links {
+  margin-left: 10px;
+}
+/* sidebar */
+.view-display-id-block_tuyen_dung {
+
+}
+.view-display-id-block_tuyen_dung .views-row {
+  padding: 20px 0;
+}
+.view-recruitment .views-row:last-child {
+  border-bottom: unset;
+}
+
+.view-display-id-block_tuyen_dung .views-row .views-field-field-image {
+  margin-bottom: 15px;
+}
+.view-display-id-block_tuyen_dung .views-row .views-field-title {
+  font-weight: 500;
+}
+/* end sidebar */
+/* end page_tuyen_dung detail */
+
+/* responsive */
+/* 992px <= screen < 1200px */
+@media (max-width: 1199.98px) {
+
+}
+
+/* 768px <= screen < 992px */
+@media (max-width: 991.98px) {
+  .view-display-id-page_tuyen_dung {
+    width: 100%;
+  }
+
+  .page-node-type-tuyen_dung .node-tuyen-dung-full .view-display-id-block_tuyen_dung {
+    margin-top: 30px;
+  }
+
+  .page-node-type-tuyen_dung .node-tuyen-dung-full .view-display-id-block_tuyen_dung .views-row {
+    display: flex;
+    align-items: center;
+  }
+
+  .view-display-id-block_tuyen_dung .views-row .views-field-title {
+    padding: 10px;
+  }
+
+  .view-display-id-block_tuyen_dung .views-field-field-luong-thang {
+    padding-right: 10px; 
+  }
+
+  .view-display-id-block_tuyen_dung .views-field-field-so-luong {
+    margin-bottom: 10px;
+  }
+}
+
+/* 576px <= screen < 768px */
+@media (max-width: 767.98px) {
+
+  .page-node-type-tuyen_dung .node-tuyen-dung-full .view-display-id-block_tuyen_dung .views-row {
+    flex-wrap: wrap;
+  }
+
+  .view-display-id-block_tuyen_dung .views-row .views-field-field-image {
+    width: 100%;
+  }
+
+  .view-display-id-block_tuyen_dung .views-row .views-field-title {
+    padding: 0px;
+    width: 100%;
+  }
+
+  .view-display-id-block_tuyen_dung .views-field-field-luong-thang {
+    width: 100%;
+    padding: 0px;
+  }
+
+  .view-display-id-block_tuyen_dung .views-field-field-so-luong {
+    width: 100%;
+  }
+
+  .view-display-id-block_tuyen_dung .views-row .views-field-field-image img {
+    width: 100%;
+  }
+
+  .page-node-type-tuyen_dung .node-tuyen-dung-full h1.page-title {
+    font-size: 28px;
+  }
+
+}
+
+/* screen < 576px */
+@media (max-width: 575.98px) {
+  .view-display-id-page_tuyen_dung .views-row {
+    flex-wrap: wrap;
+  }
+
+  .view-display-id-page_tuyen_dung .views-field-field-image {
+    width: 100%;
+  }
+
+  .view-display-id-page_tuyen_dung .views-row .views-field-nothing {
+    width: 100%;
+    padding: 0px;
+    margin-top: 15px;
+  }
+
+  .view-display-id-page_tuyen_dung .views-row .views-field-title {
+    font-size: 18px;
+  }
+
+  .view-display-id-page_tuyen_dung .views-field-field-ngay-het-han {
+    width: 100%;
+    margin-top: 15px;
+  }
+
+  .view-display-id-page_tuyen_dung .views-field-field-image img {
+    width: 100%;
+  }
+
+  .view-display-id-page_tuyen_dung .views-row:first-child {
+    padding-top: 0px;
+  }
+
+  .view-display-id-block_tuyen_dung .views-row {
+    padding-bottom: 10px;
+  }
+}
+
+@media (max-width: 479px) {
+  .page-node-type-tuyen_dung .content-details .node-submitted {
+    flex-wrap: wrap;
+    font-size: 0px;
+  }
+
+  .page-node-type-tuyen_dung .content-details .node-submitted span {
+    font-size: 16px;
+  }
+
+  .page-node-type-tuyen_dung .content-details .node-submitted .social-share-links {
+    margin-left: 0px;
+    margin-top: 5px;
+  }
+
+  .page-node-type-tuyen_dung .node-tuyen-dung-full .field--type-text-with-summary .field--item {
+    font-size: 14px;
+  }
+
+  .page-node-type-tuyen_dung .node-tuyen-dung-full h1.page-title {
+    font-size: 18px;
+  }
+
+  .page-node-type-tuyen_dung .content-details .node-submitted .field--name-field-ngay-het-han, .page-node-type-tuyen_dung .content-details .field--label-above .field--label, .page-node-type-tuyen_dung .content-details .field--label-inline{
+    font-size: 14px;
+  }
+
+  .page-node-type-tuyen_dung .node-tuyen-dung-full .content-filter {
+    padding: 0px;
+  }
+
+  .page-node-type-tuyen_dung .node-tuyen-dung-full .content-details {
+    padding: 0px;
+  }
+
+  .page-node-type-tuyen_dung .node-tuyen-dung-full .view-display-id-block_tuyen_dung .views-row:last-child {
+    padding-bottom: 0px;
+  }
+
+
+
+}
+/* end responsive */

@@ -1,0 +1,20 @@
+custom:
+  css:
+    theme:
+      css/custom.css: {}
+  js:
+    js/custom.helper.js: {}
+    js/custom.handler.js: {}
+    js/custom.func.js: {}
+    js/custom.file.js: {}
+  dependencies:
+    - core/jquery
+    - core/drupal
+    - core/drupalSettings
+    - core/jquery.once
+    - core/jquery.ui.dialog
+    - core/jquery.cookie
+
+custom_mobilevn:
+  js:
+    js/custom_mobilevn.js: {}

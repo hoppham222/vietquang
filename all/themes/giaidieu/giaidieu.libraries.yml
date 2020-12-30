@@ -1,0 +1,64 @@
+global-styling:
+  version: VERSION
+  css:
+    theme:
+      css/reset.css: {}
+      css/style.css: {}
+      css/responsive.css: {}
+      css/responsive1.css: {}
+      
+global-scripts:
+  version: VERSION
+  js:
+    js/script.js: {}
+  dependencies:
+    - core/jquery
+    - core/drupal
+    - core/drupalSettings
+
+product:
+  version: VERSION
+  css:
+    theme:
+      css/product.css: {}
+
+user:
+  version: VERSION
+  css:
+    theme:
+      css/user.css: {}
+
+news:
+  version: VERSION
+  css:
+    theme:
+      css/news.css: {}
+
+recruitment:
+  version: VERSION
+  css:
+    theme:
+      css/recruitment.css: {}
+
+home:
+  version: VERSION
+  css:
+    theme:
+      css/home.css: {}
+
+introduce:
+  version: VERSION
+  css:
+    theme:
+      css/introduce.css: {}
+
+commerce:
+  version: VERSION
+  css:
+    theme:
+      css/commerce.css: {}
+
+zalo-scripts:
+  version: VERSION
+  js:
+    //sp.zalo.me/plugins/sdk.js: { type: external, attributes: { async: true } }

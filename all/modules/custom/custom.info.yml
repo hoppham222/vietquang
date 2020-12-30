@@ -1,0 +1,7 @@
+name: Custom
+description: "Custom module made by giaidieu.com."
+package: 'Giai Điệu'
+type: module
+core: 8.x
+version: '8.x-1.0'
+project: 'custom'

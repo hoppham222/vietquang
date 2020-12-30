@@ -1,0 +1,316 @@
+<?php
+use Drupal\Core\Entity\EntityInterface;
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\Core\Url;
+use Drupal\node\Entity\Node;
+use Drupal\user\Entity\User;
+use Drupal\file\Entity\File;
+use Drupal\image\Entity\ImageStyle;
+use Symfony\Component\HttpFoundation\RedirectResponse;
+
+use Drupal\Core\Breadcrumb\Breadcrumb;
+use Drupal\Core\Link;
+
+/**
+ * @file
+ * Giai Điệu customization module.
+ */
+
+/**
+ * Implements hook_cron().
+ */
+//function custom_cron() {
+//}
+
+/**
+ * Implements hook_commerce_order_presave().
+ */
+function custom_commerce_order_presave($order) {  
+}
+
+/**
+ * Implements hook_commerce_order_update().
+ */
+function custom_commerce_order_update($order) {
+  //kint($order);
+}
+
+/**
+ * Implements hook_system_breadcrumb_alter().
+ */
+function custom_system_breadcrumb_alter(\Drupal\Core\Breadcrumb\Breadcrumb &$breadcrumb, \Drupal\Core\Routing\RouteMatchInterface $route_match, array $context) {
+  if (!\Drupal::service('router.admin_context')->isAdminRoute()) {
+    module_load_include('inc', 'custom', 'includes/custom.func');
+    custom_breadcrumb_modify($breadcrumb, $route_match);
+  }
+}
+
+/**
+ * Implements hook_preprocess_commerce_product().
+ */
+//function custom_preprocess_commerce_product(&$vars) {
+//}
+
+/**
+ * Implements hook_theme().
+ */
+function custom_theme($existing, $type, $theme, $path) {
+  return array(
+    // File field drop area.
+    'custom__fileupload_drop_area' => array(
+      'template' => 'custom--fileupload-drop-area',
+      'path' => drupal_get_path('module', 'custom') . '/templates',
+      'variables' => array('images' => null),
+    ),
+    // User login popup.
+    'custom__user_form_login' => array(
+      'template' => 'custom--user-form-login',
+    ),
+  );
+}
+
+/**
+ * Implements hook_form_alter().
+ */
+function custom_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
+  // Include form handler.
+  //kint($form_id);
+  $form_state->loadInclude('custom', 'inc', 'includes/custom.form');
+  
+  switch ($form_id) {
+    case 'commerce_checkout_flow_multistep_default':
+      custom_commerce_checkout_form_modify($form);
+      break;
+    
+    case 'user_login_form':
+      custom_user_login_form_modify($form);
+      break;
+    
+    case 'user_register_form':
+      custom_user_register_form_modify($form);
+      break;
+    
+    case 'user_form':
+      custom_user_edit_form_modify($form);
+      break;
+
+    case 'user_pass':
+      custom_user_pass_form_modify($form);
+      break;
+
+    case 'views_exposed_form':
+      //if ($form['#id'] == 'views-exposed-form-node-page-functions-page-category') {
+        //custom_views_exposed_product_form_modify($form);
+      //}
+      
+      break;
+      
+    case 'user_admin_settings':
+      custom_user_admin_settings_modify($form);
+      break;
+    
+    //case 'node_product_form':
+    //case 'node_product_edit_form':
+      //custom_node_product_form_modify($form, $form_state);
+      //break;
+  }
+}
+
+/**
+ * Implements hook_user_login().
+ */
+function custom_user_login($account) {
+}
+
+/**
+ * Implements hook_mail().
+ */
+function custom_mail($key, &$message, $params) {
+  module_load_include('inc', 'custom', 'includes/custom.mail');
+  custom_mail_get_message($key, $message, $params);
+}
+
+/**
+ * Implements hook_mail_alter().
+ */
+function custom_mail_alter(&$message) {
+  module_load_include('inc', 'custom', 'includes/custom.mail');
+  custom_mail_alter_message($message);
+}
+
+/**
+ * Implements hook_token_info().
+ */
+function custom_token_info() {
+  /*
+  $info = array();
+  $info['types']['custom'] = ['name' => t('Giai Điệu group'), 'description' => t('Custom tokens group')];
+  $info['tokens']['custom']['test_url'][] = 'Test URL';
+  return $info;
+  */
+}
+
+/**
+ * Implements hook_tokens().
+ */
+function custom_tokens($type, $tokens, array $data, array $options, \Drupal\Core\Render\BubbleableMetadata $bubbleable_metadata) {
+  /*
+  $replacements = array();
+  if ($type == 'custom') {
+    foreach ($tokens as $name => $original) {
+      // Find the desired token by name.
+      switch ($name) {
+        case 'test_url':
+          $replacements[$original] = 'http' . $_SERVER['protossl'] . '://' . $_SERVER['HTTP_HOST'] . '/admin/test';
+          break;
+      }
+    }
+  }
+  
+  return $replacements;
+  */
+}
+
+/**
+ * Implements hook_page_attachments().
+ */
+function custom_page_attachments(array &$attachments) {
+  // Add custom js/css to every page (both backend and fronent).
+  $attachments['#attached']['library'][] = 'custom/custom';
+  $attachments['#attached']['library'][] = 'views_slideshow/jquery_hoverIntent';
+}
+
+/**
+ * Implements hook_theme_suggestions_alter().
+ * $hook: node, page, etc.
+ */
+function custom_theme_suggestions_alter(array &$suggestions, array $vars, $hook) {
+}
+
+/**
+ * Implements hook_preprocess_page().
+ */
+function custom_preprocess_page(&$vars) {
+  $route_name = \Drupal::routeMatch()->getRouteName();
+
+  // Redirect all taxonomy term page to product search page.
+  if ($route_name == 'entity.taxonomy_term.canonical') {
+    $term = \Drupal::request()->get('taxonomy_term');
+    
+    if ($term and $term->getVocabularyId() == 'category_product') {
+      $current_sort = isset($_GET['sort_bef_combine']) ? $_GET['sort_bef_combine'] : 'created_DESC';
+      $url = 'tim-kiem?sort_bef_combine=' . $current_sort . '&f[0]=danh_muc_san_pham:' . $term->id();
+
+      $response = new RedirectResponse($url);
+      $response->send();
+    }
+  }
+}
+
+/**
+ * Implements hook_preprocess_node().
+ */
+function custom_preprocess_node(&$vars) {
+}
+
+/**
+ * Implements hook_node_presave().
+ */
+function custom_node_presave(\Drupal\node\Entity\Node $node) {
+  //if ($node->getType() == 'testimonial') {
+    //$node->body->format = 'plain_text';
+    //if (trim($node->body->value) == '') {
+      //$node->body->value = '';
+    //}
+  //}
+}
+
+/**
+ * Implements hook_node_insert().
+ */
+function custom_node_insert(\Drupal\Core\Entity\EntityInterface $node) {
+}
+
+/**
+ * Implements hook_node_update().
+ */
+function custom_node_update(\Drupal\Core\Entity\EntityInterface $node) {
+}
+
+/**
+ * Implements hook_node_delete().
+ */
+function custom_node_delete(\Drupal\Core\Entity\EntityInterface $node) {
+}
+
+/**
+ * Implements hook_comment_update().
+ */
+function custom_comment_update($comment) {
+}
+
+/**
+ * Implements hook_comment_insert().
+ */
+function custom_comment_insert($comment) {
+}
+
+/**
+ * Implements hook_comment_delete().
+ */
+function custom_comment_delete($comment) {
+}
+
+/**
+ * Implements hook_entity_view().
+ */
+function custom_entity_view(array &$build, \Drupal\Core\Entity\EntityInterface $entity, \Drupal\Core\Entity\Display\EntityViewDisplayInterface $display, $view_mode) {
+  //if ($view_mode == 'full' and $entity->getEntityTypeId() == 'node') {
+  //}
+}
+
+/**
+ * Implements hook_entity_load().
+ * All user / node / taxonomy, etc load is handled here. 
+ */
+function custom_entity_load(array $entities, $entity_type_id) {
+  //foreach ($entities as $entity) {
+    //$entity->foo = 'Something';
+  //}
+}
+
+/**
+ * Implements hook_entity_presave().
+ */
+function custom_entity_presave(Drupal\Core\Entity\EntityInterface $entity) {
+}
+
+/**
+ * Implements hook_entity_insert().
+ */
+function custom_entity_insert(Drupal\Core\Entity\EntityInterface $entity) {
+}
+
+/**
+ * Implements hook_entity_update().
+ */
+function custom_entity_update(Drupal\Core\Entity\EntityInterface $entity) {
+}
+
+/**
+ * Implements hook_block_view_alter.
+ */
+function custom_block_view_alter(array &$build, \Drupal\Core\Block\BlockPluginInterface $block) {
+  // kint($block);
+  
+}
+
+function custom_theme_suggestions_block_alter(&$suggestions, $variables) {
+  // kint($suggestions);
+}
+
+function custom_block_build_alter(array &$build, \Drupal\Core\Block\BlockPluginInterface $block) {
+  // kint($block);
+}
+

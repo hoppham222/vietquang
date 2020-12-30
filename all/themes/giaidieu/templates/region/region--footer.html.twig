@@ -1,0 +1,56 @@
+{#
+/**
+ * @file
+ * Theme override to display a region.
+ *
+ * Available variables:
+ * - content: The content for this region, typically blocks.
+ * - attributes: HTML attributes for the region <div>.
+ * - region: The name of the region variable as defined in the theme's
+ *   .info.yml file.
+ *
+ * @see template_preprocess_region()
+ */
+#}
+<div class="footer-row ">
+	<div class="wapper_footer_top container">
+		<div class="row">
+			<div class="footer_top_left col-md-6">
+				<div class="menu_about_us_footer footer_top_item">
+					<h3>Về chúng tôi <i class="fas fa-chevron-right"></i></h3>
+					{{ drupal_menu('about-us') }}
+				</div>
+				<div class="menu_product_footer_footer footer_top_item">
+					<h3>Sản phẩm <i class="fas fa-chevron-right"></i></h3>
+					{{ drupal_menu('product-footer') }}
+				</div>
+			</div>
+			<div class="col-md-6 footer_top_right">
+				<div class=" menu_policy_footer footer_top_item">
+					<h3>Chính sách <i class="fas fa-chevron-right"></i></h3>
+					{{ drupal_menu('chinh-sach') }}
+				</div>
+				<div class=" block_hotline_footer footer_top_item">
+					<h3>Hotline</h3>
+					{{ drupal_entity('block_content', '6') }}
+				</div>
+			</div>
+			<div class="col-xs-12 follow-us pull-left">
+				{{ drupal_entity('block', 'socialmedialinks') }}
+				<a href='/' class='certification'><img src="/sites/all/themes/giaidieu/images/mask-group-1.png"
+						alt="Đăng ký bộ công thương" /></a>
+			</div>
+		</div>
+
+	</div>
+	<div class="copyright pull-right">
+		{{ drupal_entity('block_content', '1') }}
+	</div>
+
+</div>
+
+<div class="social-fixed">
+	<div class="sroll-top">
+		<i class="fa fa-chevron-up" aria-hidden="true"></i>
+	</div>
+</div>

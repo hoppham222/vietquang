@@ -1,0 +1,65 @@
+{#
+/**
+ * @file
+ * Theme override to display a region.
+ *
+ * Available variables:
+ * - content: The content for this region, typically blocks.
+ * - attributes: HTML attributes for the region <div>.
+ * - region: The name of the region variable as defined in the theme's
+ *   .info.yml file.
+ *
+ * @see template_preprocess_region()
+ */
+#}
+<div class="header-row row-1">
+	<div class="container header_top">
+		<div class='wapper_header_top'>
+			<button class="header-menu_left__icon" onclick="giaidieu_toogle_menu_left(this)"><span></span></button>
+			<!-- Logo -->
+			<div class="logo-header">
+				{{ drupal_entity('block', 'giaidieu_branding') }}
+			</div>
+
+			<!-- Search -->
+			<div class="search-wrapper">
+				<button class="header-search__icon" onclick="giaidieu_toogle_search(this)"><span></span></button>
+				{{ drupal_block('views_exposed_filter_block:product_search_category-page_title_search') }}
+			</div>
+
+			<!-- Hotline -->
+			<div class="wapper_header_top_right">
+				<button class="header-menu_right__icon" onclick="giaidieu_toogle_menu_right(this)"><span></span></button>
+				<div class="header-menu_right">
+					<div class="contact-hotline">
+						<span class="phone-icon"><i class="fas fa-phone-alt" aria-hidden="true"></i></span> <a href="tel:0935121010">0935 12 10 10</a>
+					</div>
+		
+					{% if logged_in %}
+					<div  class="log-in">
+						<img  src="{{ account_avatar }}" alt="Avatar" class="user-avatar" />
+						<span onclick="custom_user_account_menu_toggle(this);" class='user_has_login'>Tài khoản</span>
+						<ul class="account-select">
+						<li><a href="/user/{{ user.id }}/edit"><i class="fas fa-user"></i> {{ account.field_full_name.value }}</a></li>
+						<li><a href="/user/logout" title="Đăng xuất khỏi hệ thống"><i class="fas fa-sign-out-alt"></i>Đăng xuất</a></li>
+						</ul>
+					</div>
+					{% else %}
+					<div class="log-in">
+						<span class="user-icon"><i class="fa fa-user" aria-hidden="true"></i></span>
+						<a href="/user/login" onclick="custom_user_login_popup(); return false;" title="Đăng nhập thành viên">Đăng nhập</a>
+					</div>
+					{% endif %}
+				</div>
+				<!-- shoping cart -->
+				{{ drupal_entity('block', 'cart') }}
+			</div>
+		</div>
+	</div>
+</div>
+<div class="header-row row-2">
+	<div class="container header_bottom">
+		<!-- Main menu -->
+		{{ drupal_menu('main') }}
+	</div>
+</div>

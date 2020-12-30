@@ -1,0 +1,184 @@
+{#
+/**
+ * @file
+ *
+ * Default product template.
+ *
+ * Available variables:
+ * - attributes: HTML attributes for the wrapper.
+ * - product: The rendered product fields.
+ *   Use 'product' to print them all, or print a subset such as
+ *   'product.title'. Use the following code to exclude the
+ *   printing of a given field:
+ *   @code
+ *   {{ product|without('title') }}
+ *   @endcode
+ * - product_entity: The product entity.
+ * - product_url: The product URL.
+ *
+ * @ingroup themeable
+ */ 
+#}
+<div class="product product-full product-{{ product_entity.id }} product-type-{{ product_type }} clearfix">
+  <div class="product-header clearfix">
+    <div class="row">
+      <div class="col-4-5">
+        {% if product.variation_field_images %}
+        {{ product.variation_field_images }}
+        {% else %}
+          <div class="product-header__no-image">
+            <img src="/sites/default/files/default_images/noimage.png" alt="Ảnh sản phẩm" />
+          </div>
+        {% endif %}
+      </div>
+      <div class="col-4-5">
+        <!-- Product title -->
+        <h1 class="page-title">{{ product_entity.title.value }} ({{ product.variation_sku }})</h1>
+
+        <!-- Product price -->
+        <div class="price-wrapper">
+          <p class="price value">{# {{ product.variation_price }} #} Liên hệ</p>
+        </div>
+        
+        <!-- Product basic info -->
+        <div class="basic-info row">
+          <div class="col-md-6">
+            {# {{ product.variation_sku }} #}
+            {{ product.variation_field_bao_hanh }}
+            {{ product.variation_field_dien_tich_phong }}
+          </div>
+          <div class="col-md-6">
+            {{ product.variation_field_thuong_hieu }}
+            {{ product.variation_field_chat_lieu_den }}
+          </div>
+        </div>
+        
+        <!-- Add to cart form -->
+        <div class="add-to-cart-form">
+          {{ product.variations }}
+          <div class="social-share-links">{{ product.addtoany }}</div>
+          <div class="custom-bang-gia"><span>Xem bảng giá</span><a href="/" class="btn btn-link">tại đây</a></div>
+        </div>
+      </div>
+      <div class="col-md-3 product-header__right">
+        {# {% if product_type == 'product' %}
+          <div class="wapper_choose_product_variation">
+            product.variation_field_mau_san_pham
+            product.variation_field_mau_sac_den
+          </div>
+        {%  endif %} #}
+        {{ drupal_entity('block_content', 11) }}
+        {{ drupal_entity('block_content', 5) }}
+        {# <div class="social-share-links">{{ product.addtoany }}</div> #}
+      </div>
+    </div>
+  </div>
+  
+  <!-- Product tabs -->
+
+  <div id="custom-tabs" class="clearfix">
+    <ul>
+      {% if product_type == 'product' %}
+        <li rel="product-thong-so-ky-thuat" class="active">Thông số kỹ thuật</li>
+      {% endif %}
+        <li rel="product-mo-ta" {% if product_type != 'product' %} class="active" {% endif %}>Mô tả</li>
+        <li rel="product-danh-gia">Đánh giá</li>
+    </ul>
+  </div>
+
+  
+  <!-- Product body -->
+  <div class="product-body clearfix">
+    {% if product_type == 'product' %}
+    <!-- Thong so ky thuat -->
+    <div id="product-thong-so-ky-thuat" class="clearfix table-responsive">
+      <h2 class="section-title">Thông số kỹ thuật:</h2>
+      <table class="table table_product_detail">
+        <thead class="table-header">
+          <tr class="table__tr">
+            <th class="table__td">Thông số điện:</th>
+            <th class="table__td">Thông số quang:</th>
+            <th class="table__td">Đóng gói:</th>
+					</tr>
+        </thead>
+        
+        <tbody class="table-body">
+          <tr class="table__tr">
+            <td class="table__td">{{ product.variation_field_dien_ap }}</td>
+            <td class="table__td">{{ product.variation_field_nhiet_do_mau }}</td>
+            <td class="table__td">{{ product.variation_field_kich_thuoc_hop }}</td>
+					</tr>
+          <tr class="table__tr">
+            <td class="table__td">{{ product.variation_field_cong_suat }}</td>
+            <td class="table__td">{{ product.variation_field_hieu_suat_sang }}</td>
+            <td class="table__td">{{ product.variation_field_trong_luong_tinh }}</td>
+					</tr>
+          <tr class="table__tr">
+            <td class="table__td">{{ product.variation_field_he_so_cong_suat }}</td>
+            <td class="table__td">{{ product.variation_field_chi_so_hoan_mau }}</td>
+            <td class="table__td">{{ product.variation_field_kich_thuoc_san_pham }}</td>
+					</tr>
+          <tr class="table__tr">
+            <td class="table__td">&nbsp;</td>
+            <td class="table__td">{{ product.variation_field_tuoi_tho }}</td>
+            <td class="table__td">&nbsp;</td>
+					</tr>
+        </tbody>
+      </table>
+    </div>
+    {% endif %}
+    
+    <!-- Mo ta san pham -->
+    <div id="product-mo-ta" class="clearfix">
+      <h2 class="section-title">Mô tả sản phẩm</h2>
+      {{ product.variation_field_mo_ta_san_pham }}
+    </div>
+
+    <!-- Danh gia san pham -->
+    <div id="product-danh-gia" class="clearfix">
+      <h2 class="section-title">Đánh giá sản phẩm</h2>
+
+        {% if comment_stats.total_count > 0 %}
+        <div class="comment-wrapper">
+          <!-- Rating stats -->
+          <div class="comment-stats-wrapper row">
+            <div class="col-xs-4">
+              <div class="stats-overall">
+                <p class="stats-averate">{{ comment_stats.rating_average }} <span><i class="fa fa-star" aria-hidden="true"></i></span></p>
+                <p class="stats-total-count">{{ comment_stats.total_count }} đánh giá</p>
+              </div>
+            </div>
+            <div class="col-xs-8">
+              <div class="stats-details">
+                {% for key,value in comment_stats.ratings %}
+                <div class="stats-row">
+                  <div class="rating-star">{{ key }} <i class="fa fa-star" aria-hidden="true"></i></div>
+                  {% set rating_percentage = value / comment_stats.total_count * 100 %}
+                  <div class="stats-background"><div class="stats-progress" style="width: {{ rating_percentage }}%;"></div></div>
+                  <div class="rating-count">{{ value }}</div>
+                </div>
+                {% endfor %}
+              </div>
+            </div>
+          </div>
+          {{ product.field_comments }}
+        </div>
+        {% else %}
+        <div class="comment-wrapper no-comment">
+          <p class="empty-text">Chưa có đánh giá nào cho sản phẩm này.</p>
+          {{ product.field_comments }}
+        </div>
+        {% endif %}
+    </div>
+  </div>
+
+  <!-- Product footer -->
+  <div class="product-footer clearfix">
+    <!-- San pham lien quan -->
+    <div class="product-relatives-wrapper">
+      {{ drupal_view('commerce_product_functions', 'block_san_pham_lien_quan', product_entity.field_danh_muc_san_pham.entity.id) }}
+    </div>
+  </div>
+	
+	<div class="zalo-chat-widget" data-oaid="28024157673834418" data-welcome-message="Rất vui khi được hỗ trợ bạn!" data-autopopup="0" data-width="350" data-height="420"></div>
+</div>

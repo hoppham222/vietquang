@@ -1,0 +1,77 @@
+custom.test:
+  path: '/admin/test'
+  defaults:
+    _controller: '\Drupal\custom\Controller\customController::custom_test'
+  requirements:
+    _permission: 'view the administration theme'
+
+custom.home:
+  path: '/home'
+  defaults:
+    _controller: '\Drupal\custom\Controller\customController::custom_home_callback'
+  requirements:
+    _permission: 'access content'
+
+custom.product.add_to_cart:
+  path: '/custom/product-add-to-cart/{product_id}'
+  defaults:
+    _controller: '\Drupal\custom\Controller\customController::custom_commerce_product_add_to_cart_callback'
+  requirements:
+    _permission: 'access content'
+    product_id: \d+
+
+custom.menu_load:
+  path: '/custom/menu-load/{tid}'
+  defaults:
+    _controller: '\Drupal\custom\Controller\customController::custom_menu_load_callback'
+  requirements:
+    _permission: 'access content'
+
+custom.photo_upload:
+  path: '/custom/photo-upload'
+  defaults:
+    _controller: '\Drupal\custom\Controller\customController::custom_photo_upload_callback'
+  requirements:
+    _user_is_logged_in: 'TRUE'
+
+custom.user.login_form_popup:
+  path: '/user-login-form-popup'
+  defaults:
+    _controller: '\Drupal\custom\Controller\customController::custom_user_login_form_popup_callback'
+  requirements:
+    _user_is_logged_in: 'FALSE'
+
+custom.user.smart_login:
+  path: '/user-smart-login'
+  defaults:
+    _controller: '\Drupal\custom\Controller\customController::custom_user_smart_login_callback'
+  requirements:
+    _user_is_logged_in: 'FALSE'
+
+custom.user.store:
+  path: '/user-store'
+  defaults:
+    _controller: '\Drupal\custom\Controller\customController::custom_user_store_callback'
+  requirements:
+    _user_is_logged_in: 'TRUE'
+
+custom.user.newsletter.subscribe:
+  path: '/user-newsletter-subscribe'
+  defaults:
+    _controller: '\Drupal\custom\Controller\customController::custom_user_newsletter_subscribe_callback'
+  requirements:
+    _permission: 'access content'
+
+#custom.user_login_popup:
+#  path: '/user-login-popup'
+#  defaults:
+#    _controller: '\Drupal\custom\Controller\customController::custom_user_login_popup_callback'
+#  requirements:
+#    _user_is_logged_in: 'FALSE'
+
+#custom.user_register_popup:
+#  path: '/user-register-popup'
+#  defaults:
+#    _controller: '\Drupal\custom\Controller\customController::custom_user_register_popup_callback'
+#  requirements:
+#    _access_user_register: 'TRUE'

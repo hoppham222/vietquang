@@ -1,0 +1,39 @@
+/* Custom CSS created by giaidieu.com */
+
+#giaidieu-back-to-home {
+  text-align: center;
+  padding: 3px;
+  background-color: lightyellow;
+  display: none;
+}
+
+#giaidieu-back-to-home a:hover {
+  text-decoration: none;
+}
+
+#toolbar-item-administration-tray.toolbar-tray a:hover, #toolbar-item-administration-tray.toolbar-tray a:active, #toolbar-item-administration-tray.toolbar-tray a:focus, #toolbar-item-administration-tray.toolbar-tray a.is-active {
+  text-decoration: none;
+}
+
+#custom-photo-form-wrapper #photos-desc {
+  background-color: #e6e6e6;
+  padding: 10px;
+  border: 2px dashed #ccc;
+  min-height: 215px;
+  cursor: pointer;
+}
+
+#custom-photo-form-wrapper div.photo-thumb-wrapper {
+  display: table-cell;
+  border: 1px solid #e6e6e6;
+  background-color: #fff;
+  text-align: center;
+  vertical-align: middle;
+  border-radius: 5px;
+}
+
+#toolbar-administration .toolbar-menu-administration .menu-item i {
+  margin-right: 8px;
+  font-family: "Font Awesome 5 Free";
+  font-weight: 600;
+}

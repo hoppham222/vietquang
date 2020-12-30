@@ -1,0 +1,221 @@
+<?php
+/**
+ * @file
+ * Functions to support theming in the giaidieu theme.
+ */
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\Component\Utility\UrlHelper;
+use Drupal\Core\Language\LanguageInterface;
+use Drupal\file\Entity\File;
+use Drupal\image\Entity\ImageStyle;
+use Drupal\taxonomy\Entity\Term;
+use Drupal\node\Entity\Node;
+use Drupal\media\Entity\Media;
+use Drupal\field\Entity\FieldConfig;
+use Drupal\user\Entity\User;
+use Drupal\Core\Url;
+
+/**
+ * Implements hook_preprocess_HOOK() for HTML document templates.
+ */
+function giaidieu_preprocess_html(&$vars) {
+  // Get route name.
+  $route_name = \Drupal::routeMatch()->getRouteName();
+  $vars['attributes']['class'][] = 'page-name-' . preg_replace('/\./', '-', $route_name);
+}
+
+/**
+ * Implements hook_preprocess_page_title().
+ */
+function giaidieu_preprocess_page_title(&$vars) {
+  // Get route name.
+  // $route_name = \Drupal::routeMatch()->getRouteName();
+  // kint($route_name);
+
+  // Make page title.
+  //$current_path = \Drupal::service('path.current')->getPath();
+  //$path_args = explode('/', $current_path);
+  //kint($path_args);
+
+  // if ($path_args[1] == 'user' and is_numeric($path_args[2]) and $path_args[3] == 'edit') {
+  //   $vars['title'] = 'Cập nhật thông tin tài khoản';
+  // }
+
+}
+
+/**
+ * Implements hook_preprocess_block() for block content.
+ */
+function giaidieu_preprocess_block(&$vars) {
+  //kint($vars);
+}
+
+/**
+ * Implements hook__page_attachments_alter().
+ */
+function giaidieu_page_attachments_alter(array &$attachments) {
+  //$path = \Drupal::request()->getpathInfo();
+  //$arg  = explode('/',$path);
+
+  // Get route name.
+  $route_name = \Drupal::routeMatch()->getRouteName();
+  // kint($route_name);
+  
+  // Add CSS to pages.
+  switch ($route_name) {
+    case 'view.product_search_category.page_product_search':
+      $attachments['#attached']['library'][] = 'giaidieu/product';
+      break;
+    
+    case 'view.node_page_functions.page_tin_tuc':
+      $attachments['#attached']['library'][] = 'giaidieu/news';
+      break;
+
+    case 'view.node_page_functions.page_tuyen_dung':
+      $attachments['#attached']['library'][] = 'giaidieu/recruitment';
+			break;
+		
+		case 'custom.home':
+			$attachments['#attached']['library'][] = 'giaidieu/home';
+			break;
+
+    case 'commerce_checkout.form':
+      $attachments['#attached']['library'][] = 'giaidieu/commerce';
+      break;
+  }
+}
+
+/**
+ * Implements hook_preprocess_commerce_product().
+ */
+function giaidieu_preprocess_commerce_product(&$vars) {
+  // Get product type for theming.
+  $vars['product_type'] = $vars['product_entity']->bundle();
+  
+  // Get commerce product stats for product full view.
+  if (isset($vars['elements']) and $vars['elements']['#view_mode'] == 'full') {
+    module_load_include('inc', 'custom', 'includes/custom.func');
+    $vars['comment_stats'] = custom_product_get_comments_stats($vars['product_entity']->id());
+    
+    // Add CSS for this page.
+    $vars['#attached']['library'][] = 'giaidieu/product';
+		$vars['#attached']['library'][] = 'giaidieu/zalo-scripts';
+  }
+}
+
+/**
+ * Implements hook_preprocess_page() for block content.
+ */
+function giaidieu_preprocess_page(&$vars) {
+  // Get page args.
+  $current_path = \Drupal::service('path.current')->getPath();
+  $path_args = explode('/', $current_path);
+
+  // kint($path_args);
+  
+  // Get route name.
+  //$route_name = \Drupal::routeMatch()->getRouteName();
+  //kint($route_name);
+
+  // Handle for page user profile.
+  if ($path_args[1] == 'user' and is_numeric($path_args[2])) {
+    module_load_include('inc', 'custom', 'includes/custom.func');
+    $vars['#attached']['library'][] = 'giaidieu/user';
+    
+    if (isset($path_args[3])) {
+      custom_user_page_view_modify($vars);
+		}
+		if($path_args[3] == 'edit'){
+			$vars['title'] = 'Cập nhật thông tin tài khoản';
+		}
+  }
+
+}
+
+/**
+ * Implements hook_theme_suggestions_alter().
+ * $hook: node, page, etc.
+ */
+function giaidieu_theme_suggestions_alter(array &$suggestions, array $vars, $hook) {
+  // Add template file for page--gioi-thieu.
+  //if ($hook == 'page') {
+    //kint($suggestions);
+  //}
+}
+
+/**
+ * Implements hook_preprocess_node() for block content.
+ */
+function giaidieu_preprocess_node(&$vars) {
+	// kint($vars['node']->getType());
+  switch ($vars['node']->getType()) {
+    case 'article':
+      $vars['created'] = \Drupal::service('date.formatter')->format($vars['node']->get('created')->value, 'vn_datetime');
+      $vars['#attached']['library'][] = 'giaidieu/news';
+      break;
+
+    case 'tuyen_dung':
+      $vars['#attached']['library'][] = 'giaidieu/recruitment';
+      break;
+
+    case 'page':
+      if ($vars['node']->id() == '37' || $vars['node']->id() == '4'  ) {
+			  $vars['#attached']['library'][] = 'giaidieu/introduce';
+      }
+      break;
+      
+		case 'webform':
+			if ( $vars['node']->id() == '4'  ) {
+				$vars['#attached']['library'][] = 'giaidieu/introduce';
+			}
+			break;
+  }
+}
+
+/**
+ * Implements hook_preprocess_maintenance_page().
+ */
+function giaidieu_preprocess_maintenance_page(&$vars) {
+}
+
+/**
+ * Implements hook_preprocess_region().
+ */
+function giaidieu_preprocess_region(&$vars) {
+  if ($vars['region'] == 'header') {
+    if ($vars['user']->id()) {
+      $vars['account'] = User::load($vars['user']->id());
+      
+      // Check for user avatar.
+      if ($vars['account']->get('field_photo')->target_id) {
+        $file = File::load($vars['account']->get('field_photo')->target_id);
+        
+        if ($file) {
+          $vars['account_avatar'] = ImageStyle::load('image_38x38')->buildUrl($file->getFileUri());
+        }
+      }
+      else{
+        $vars['account_avatar'] = ImageStyle::load('image_38x38')->buildUrl('public://default_images/no_photo.png');
+      }
+    }
+  }
+}
+
+/**
+ * Implements hook_preprocess_form_element().
+ */
+function giaidieu_preprocess_views_view_field(&$vars) {
+  //$view = $vars['view'];
+  //kint($view->id());
+  
+  //static $nid;
+  //if ($view->id() == 'content' and $view->current_display == 'page_2') {
+    // Get nod eid value for nothing field.
+    //if ($vars['field']->field == 'nid') {
+      //$nid = $vars['field']->getValue($vars['row']);
+    //}
+    //else if ($vars['field']->field == 'nothing') {
+      //$vars['output'] = '<a href="#" onclick="custom_block_twig_preview(' . $nid . '); return false;">xem thử</a>';
+    //}
+  //}
+}

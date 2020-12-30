@@ -1,0 +1,29 @@
+{% set item = count_text | replace({' item': '', ' items': ''}) %}
+<div{{ attributes.addClass('shoping_cart_wapper') }}>
+  <div class="cart-block--summary">
+    {% if item > 0 %}
+    <a class="cart-block--link__expand" href="{{ url }}">
+		  <div class="icon_shoping_cart">
+		    <img src="/sites/all/themes/giaidieu/images/icon/add-to-basket.png" alt="Shoping cart" />
+		  </div>
+		  <span class="amount_product">{{ item }}</span>
+    </a>
+    {% else %}
+    <div class="icon_shoping_cart">
+      <img src="/sites/all/themes/giaidieu/images/icon/add-to-basket.png" alt="Shoping cart" title="Chưa có sản phẩm nào trong giỏ hàng" />
+    </div>
+    {% endif %}
+  </div>
+  {% if content %}
+  <div class="cart-block--contents">
+    <div class="cart-block--contents__inner">
+      <div class="cart-block--contents__items">
+        {{ content }}
+      </div>
+      <div class="cart-block--contents__links">
+        <a href="/cart" class="btn btn-primary btn-sm">Xem báo giá</a>
+      </div>
+    </div>
+  </div>
+  {% endif %}
+</div>

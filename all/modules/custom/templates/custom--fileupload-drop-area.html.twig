@@ -1,0 +1,24 @@
+<div id="custom-photo-form-wrapper" class="dropzone clearfix">
+  <!-- Field label -->
+  <div class="field-label">Hình ảnh</div>
+  
+  <!-- Dropzone -->
+  <div id="photo-canvas">
+		<div id="photos-list">
+      {% for image in images %}
+      <div class="photo-thumb-wrapper loaded" fid="{{ image.fid }}"><img src="{{ image.url }}" alt="Đang tải" /><span class="controls" onclick="custom_file_remove(this);"><i class="fa fa-times" aria-hidden="true" title="Nhấn để bỏ ảnh này"></i></span></div>
+      {% endfor %}
+    </div>
+    <div id="photos-desc" onclick="custom_file_browse_trigger('custom-files');">
+		  <p class="desc heading">Kéo &amp; thả hình ảnh hoặc nhấn vào đây để tải ảnh lên.</p>
+		  <p class="desc">Định dạng ảnh: PNG, GIF, JPG, JPEG</p>
+      <p class="desc">Chiều dài / Chiều rộng tối thiểu: 400x400px</p>
+		  <p class="desc">Kích thước tối đa: 5 MB / ảnh</p>
+      <p class="desc">Hạn mức tối đa: 10 ảnh</p>
+		</div>
+  </div>
+  <!-- Filse storage -->
+  <div style="display: none">
+    <input id="custom-files" type="file" multiple="multiple" name="custom_files[]" />
+  </div>
+</div>
